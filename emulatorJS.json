@@ -1,0 +1,57 @@
+{
+  "type": 1,
+  "title": "EmulatorJS",
+  "name": "EmulatorJS",
+  "description": "In browser web based emulation portable to nearly any device for many retro consoles. A mix of emulators is used between Libretro and EmulatorJS",
+  "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/emulatorjs-logo.png",
+  "image": "lscr.io/linuxserver/emulatorjs:latest",
+  "note": "This is a note",
+  "categories": [
+    "Other",
+    "Games"
+  ],
+  "platform": "linux",
+  "restart_policy": "unless-stopped",
+  "ports": [
+    "3000:3000/tcp",
+    "80:80/tcp",
+    "4001:4001/tcp"
+  ],
+  "network_mode": "bridge",
+  "volumes": [
+    {
+      "container": "/data",
+      "bind": "!data"
+    },
+    {
+      "container": "/config",
+      "bind": "!config"
+    }
+  ],
+  "sysctls": [
+    {
+    "net.ipv6.conf.all.disable_ipv6": "0"
+    }
+  ],
+  "cap_add": [
+    "NET_ADMIN"
+  ],
+  "env": [
+    {
+      "name": "PUID",
+      "label": "PUID",
+      "default": "1000"
+    },
+    {
+      "name": "PGID",
+      "label": "PGID",
+      "default": "1000"
+    },
+    {
+      "name": "TZ",
+      "label": "TZ",
+      "description": "Change to Your Time Zone",
+      "default": "America/Winnipeg"
+    }
+  ]
+}
